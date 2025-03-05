@@ -3,9 +3,9 @@ import utils.*;
 
 public class Verwaltung {
     private Scanner scanner;
-    private warteschlange<Kunde> warteschlange;
-    private list<Getraenk> getraenkeListe;
-    private stack<Rechnung> rechnungsListe;
+    private Queue<Kunde> Kundenschlange;
+    private List<Getraenk> getraenkeListe;
+    private Stack<Rechnung> rechnungsStack;
 
     public static void main(String[] args) {
         new Verwaltung();
@@ -13,9 +13,9 @@ public class Verwaltung {
 
     public Verwaltung() {
         scanner = new Scanner(System.in);
-        warteschlange = new warteschlange<>();
-        getraenkeListe = new list<>();
-        rechnungsListe = new stack<>();
+        Kundenschlange = new Queue<>();
+        getraenkeListe = new List<>();
+        rechnungsStack = new Stack<>();
         fuelleKaffeeListeAuf();
 
         while (true) {
@@ -52,15 +52,15 @@ public class Verwaltung {
         System.out.print("Gewünschtes Getränk (Cappuccino, Kaffee, FlatWhite, ColdBrew): ");
         String wunschGetraenk = scanner.nextLine();
         Kunde neuerKunde = new Kunde(name, wunschGetraenk);
-        warteschlange.append(neuerKunde);
+        Kundenschlange.enqueue(neuerKunde);
 
         System.out.println("Kunde " + name + " wurde zur Warteschlange hinzugefügt.");
     }
 
     private void getränkHinzufuegen() {
-        if (list.isEmpty() && !getraenkeListe.isEmpty()) {
-            list.toFirst();
-            Kunde kunde = list.getContent();
+        if (Stack.isEmpty() && !getraenkeListe.isEmpty()) {
+            Stack.top();
+            Kunde = Stack.getContent();
             Getraenk bestelltesGetraenk = null;
 
             getraenkeListe.toFirst();
@@ -74,12 +74,12 @@ public class Verwaltung {
 
             if (bestelltesGetraenk != null) {
                 getraenkeListe.remove();
-                Rechnung rechnung = new Rechnung("20.02.2025", rechnungsListe.isEmpty() ? 1 : rechnungsListe.getContent().getrechnungsnr() + 1, 5);
+                Rechnung rechnung = new Rechnung("20.02.2025", rechnungsStack.isEmpty() ? 1 : rechnungsStack.getContent().getrechnungsnr() + 1, 5);
                 kunde.setRechnung(rechnung);
-                rechnungsListe.enqueue(rechnung);
+                rechnungsStack.append(rechnung);
                 kunde.setGetraenkErhalten(true);
                 System.out.println("Bestellung für " + kunde.getName() + " wurde bearbeitet.");
-                warteschlange.dequeue();
+                Queue.dequeue();
             } else {
                 System.out.println("Gewünschtes Getränk nicht verfügbar. Bitte füllen Sie die Liste auf.");
             }
@@ -97,17 +97,17 @@ public class Verwaltung {
     private void zeigeWarteschlange() {
 
         // Gesamte Warteschlange anzeigen
-        if (!warteschlange.isEmpty()) {
+        if (!Queue.isEmpty()) {
             System.out.println("Inhalt der Warteschlange:");
-            warteschlange.toFirst(); // Gehe zum ersten Element
+                Queue.toFirst(); // Gehe zum ersten Element
 
-            while (warteschlange.hasAccess()) { // Solange ein Element vorhanden ist
-                Kunde aktuellerKunde = warteschlange.getContent(); // Holt das aktuelle Element
+            while (Queue.hasAccess()) { // Solange ein Element vorhanden ist
+                Kunde aktuellerKunde = Queue.getContent(); // Holt das aktuelle Element
                 if (aktuellerKunde != null) {
                     System.out.println("- " + aktuellerKunde.getName() + " (Bestellt: " + aktuellerKunde.getWunschGetraenk() + ")");
                 }
-                warteschlange.next(); // Springe zum nächsten Kunden
-            } System.out.println(this.warteschlange.getContent());
+                Queue.next(); // Springe zum nächsten Kunden
+            } System.out.println(this.Queue.getContent());
         }
 
         else {
