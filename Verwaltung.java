@@ -35,7 +35,7 @@ public class Verwaltung {
             } else if (option == 3) {
                 zeigeWarteschlange();
             } else if (option == 4) {
-               getrechnung();
+                getrechnung();
             } else if (option == 5) {
                 System.out.println("Programm wird beendet. Auf Wiedersehen!");
                 break;
@@ -89,7 +89,7 @@ public class Verwaltung {
     }
 
     private void getrechnung(){
-       System.out.println(getbetrag()&getrechnungsnr());
+        System.out.println(getbetrag()&getrechnungsnr());
 
 
     }
