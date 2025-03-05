@@ -106,7 +106,7 @@ public class Verwaltung {
                 if (aktuellerKunde != null) {
                     System.out.println("- " + aktuellerKunde.getName() + " (Bestellt: " + aktuellerKunde.getWunschGetraenk() + ")");
                 }
-                Queue.next(); // Springe zum nächsten Kunden
+                Queue.getnext(); // Springe zum nächsten Kunden
             } System.out.println(this.Queue.getContent());
         }
 
